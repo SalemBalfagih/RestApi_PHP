@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:restapi_php/constants/linkapi.dart';
+import 'package:restapi_php/services/crud.dart';
 import 'package:restapi_php/validate.dart';
 import 'package:restapi_php/view/login_view.dart';
+import 'package:restapi_php/view/success_view.dart';
 import 'package:restapi_php/widgets/coustom_button.dart';
 import 'package:restapi_php/widgets/custom_text_filed.dart';
 
@@ -21,7 +25,21 @@ class _SingupViewState extends State<SingupView> {
   GlobalKey<FormState> formstate = GlobalKey();
 
   singUp() async {
-    if (formstate.currentState!.validate()) {}
+    if (formstate.currentState!.validate()) {
+      loading = true;
+      setState(() {});
+      Map<String, dynamic> response = await Crud().postRespones(linksingup, {
+        "username": username.text,
+        "email": email.text,
+        "password": password.text,
+      });
+      if (response['status'] == "success") {
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil(SuccessView.id, (route) => false);
+      } else {
+        print("sing up error");
+      }
+    }
   }
 
   @override
