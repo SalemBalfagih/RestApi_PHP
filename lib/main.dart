@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restapi_php/view/home_view.dart';
 import 'package:restapi_php/view/login_view.dart';
 import 'package:restapi_php/view/singup_view.dart';
 import 'package:restapi_php/view/success_view.dart';
@@ -18,9 +19,9 @@ class MyApp extends StatelessWidget {
       initialRoute: LoginView.id,
       routes: {
         LoginView.id: (context) => const LoginView(),
-        SingupView.id: (context) => const SingupView()
-        // "home": (context) => const Home(),
-        ,
+        SingupView.id: (context) => const SingupView(),
+        HomeView.id: (context) => const HomeView(),
+
         SuccessView.id: (context) => const SuccessView(),
         // "addnotes": (context) => const AddNotes(),
       },

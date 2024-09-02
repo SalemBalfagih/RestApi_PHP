@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restapi_php/view/login_view.dart';
 
 class SuccessView extends StatefulWidget {
   const SuccessView({super.key});
@@ -22,7 +23,7 @@ class _SuccessViewState extends State<SuccessView> {
             MaterialButton(
               onPressed: () {
                 Navigator.of(context)
-                    .pushNamedAndRemoveUntil("login", (route) => false);
+                    .pushNamedAndRemoveUntil(LoginView.id, (route) => false);
               },
               color: Colors.green,
               textColor: Colors.white,

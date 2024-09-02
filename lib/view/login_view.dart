@@ -1,5 +1,10 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:restapi_php/constants/linkapi.dart';
+import 'package:restapi_php/services/crud.dart';
 import 'package:restapi_php/validate.dart';
+import 'package:restapi_php/view/home_view.dart';
 import 'package:restapi_php/view/singup_view.dart';
 import 'package:restapi_php/widgets/coustom_button.dart';
 import 'package:restapi_php/widgets/custom_text_filed.dart';
@@ -17,7 +22,39 @@ class _LoginViewState extends State<LoginView> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   login() async {
-    if (formstate.currentState!.validate()) {}
+    if (formstate.currentState!.validate()) {
+      loading = true;
+      setState(() {});
+      var response = await Crud().postRespones(linklogin, {
+        'email': email.text,
+        'password': password.text,
+      });
+      loading = false;
+      setState(() {});
+      if (response['status'] == "success") {
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil(HomeView.id, (route) => false);
+      } else {
+        AwesomeDialog(
+          context: context,
+          dialogType: DialogType.error,
+          dialogBackgroundColor: Colors.green,
+          showCloseIcon: true,
+          body: const Column(
+            children: [
+              SizedBox(
+                height: 20,
+              ),
+              Text("خطاء في تسجيل الدخول حاااول مرة اخرى",
+                  style: TextStyle(fontSize: 20, color: Colors.white)),
+              SizedBox(
+                height: 20,
+              ),
+            ],
+          ),
+        ).show();
+      }
+    }
   }
 
   @override
