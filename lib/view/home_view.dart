@@ -3,8 +3,10 @@ import 'package:restapi_php/constants/linkapi.dart';
 import 'package:restapi_php/main.dart';
 import 'package:restapi_php/model/notes_model.dart';
 import 'package:restapi_php/services/crud.dart';
+import 'package:restapi_php/view/add_note_view.dart';
 import 'package:restapi_php/view/login_view.dart';
 import 'package:restapi_php/widgets/custom_card.dart';
+import 'package:restapi_php/widgets/custom_list_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -41,7 +43,9 @@ class _HomeViewState extends State<HomeView> {
         backgroundColor: Colors.green,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushNamed(AddNotes.id);
+        },
         backgroundColor: Colors.green,
         child: const Icon(Icons.add),
       ),
@@ -60,16 +64,9 @@ class _HomeViewState extends State<HomeView> {
                       return const Center(child: Text("no data"));
                     } else {
                       return Expanded(
-                        child: ListView.builder(
-                            itemCount: snapshot.data['data'].length,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemBuilder: (context, i) {
-                              return CustomCard(
-                                  onPressed: () async {},
-                                  ontap: () {},
-                                  model: NotesModel.fromJson(
-                                      snapshot.data['data'][i]));
-                            }),
+                        child: CustomListView(
+                          snapshot: snapshot,
+                        ),
                       );
                     }
                   }

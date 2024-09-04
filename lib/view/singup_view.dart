@@ -6,7 +6,7 @@ import 'package:restapi_php/services/crud.dart';
 import 'package:restapi_php/validate.dart';
 import 'package:restapi_php/view/login_view.dart';
 import 'package:restapi_php/view/success_view.dart';
-import 'package:restapi_php/widgets/coustom_button.dart';
+import 'package:restapi_php/widgets/custom_button.dart';
 import 'package:restapi_php/widgets/custom_text_filed.dart';
 
 class SingupView extends StatefulWidget {

@@ -8,7 +8,7 @@ import 'package:restapi_php/services/crud.dart';
 import 'package:restapi_php/validate.dart';
 import 'package:restapi_php/view/home_view.dart';
 import 'package:restapi_php/view/singup_view.dart';
-import 'package:restapi_php/widgets/coustom_button.dart';
+import 'package:restapi_php/widgets/custom_button.dart';
 import 'package:restapi_php/widgets/custom_text_filed.dart';
 
 class LoginView extends StatefulWidget {

@@ -5,3 +5,4 @@ const String linksingup = "$linkservername/auth/singup.php";
 const String linklogin = "$linkservername/auth/login.php";
 //Note
 const String linkview = "$linkservername/notes/view.php";
+const String linkadd = "$linkservername/notes/add.php";
