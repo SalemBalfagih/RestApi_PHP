@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:restapi_php/main.dart';
+import 'package:restapi_php/view/login_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -12,7 +14,16 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.exit_to_app))],
+        actions: [
+          IconButton(
+            onPressed: () {
+              sharedPreferences.clear();
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil(LoginView.id, (route) => false);
+            },
+            icon: const Icon(Icons.exit_to_app),
+          ),
+        ],
         title: const Text(
           "Home",
         ),

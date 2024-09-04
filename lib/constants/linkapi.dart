@@ -1,4 +1,4 @@
-const String linkservername = "http://192.96.0.103:8012/learnphp";
+const String linkservername = "http://192.96.0.102:8012/learnphp";
 
 //auth
 const String linksingup = "$linkservername/auth/singup.php";

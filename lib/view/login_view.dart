@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:restapi_php/constants/linkapi.dart';
+import 'package:restapi_php/main.dart';
 import 'package:restapi_php/services/crud.dart';
 import 'package:restapi_php/validate.dart';
 import 'package:restapi_php/view/home_view.dart';
@@ -32,6 +33,12 @@ class _LoginViewState extends State<LoginView> {
       loading = false;
       setState(() {});
       if (response['status'] == "success") {
+        sharedPreferences.setString("id", response['data']['id'].toString());
+        sharedPreferences.setString(
+            "email", response['data']['email'].toString());
+        sharedPreferences.setString(
+            "password", response['data']['password'].toString());
+
         Navigator.of(context)
             .pushNamedAndRemoveUntil(HomeView.id, (route) => false);
       } else {
