@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:restapi_php/constants/images.dart';
 import 'package:restapi_php/constants/linkapi.dart';
 import 'package:restapi_php/main.dart';
 import 'package:restapi_php/services/crud.dart';
@@ -80,7 +81,7 @@ class _LoginViewState extends State<LoginView> {
                       child: Column(
                         children: [
                           Image.asset(
-                            "images/icons8_file_256.png",
+                            noteImage,
                             width: 200,
                             height: 200,
                           ),
