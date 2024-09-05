@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:restapi_php/model/notes_model.dart';
 import 'package:restapi_php/view/add_note_view.dart';
+import 'package:restapi_php/view/edit_note_view.dart';
 import 'package:restapi_php/view/home_view.dart';
 import 'package:restapi_php/view/login_view.dart';
 import 'package:restapi_php/view/singup_view.dart';

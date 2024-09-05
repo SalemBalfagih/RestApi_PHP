@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restapi_php/model/notes_model.dart';
+import 'package:restapi_php/view/edit_note_view.dart';
 import 'package:restapi_php/widgets/custom_card.dart';
 
 class CustomListView extends StatelessWidget {
@@ -16,7 +17,12 @@ class CustomListView extends StatelessWidget {
         itemBuilder: (context, i) {
           return CustomCard(
               onPressed: () async {},
-              ontap: () {},
+              ontap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      EditNoteView(notes: snapshot.data['data'][i]),
+                ));
+              },
               model: NotesModel.fromJson(snapshot.data['data'][i]));
         });
   }
