@@ -55,7 +55,6 @@ class _CustomListViewState extends State<CustomListView> {
               return Expanded(
                   child: ListView.builder(
                       itemCount: snapshot.data['data'].length,
-                      physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, i) {
                         return CustomCard(
                             onPressed: () {

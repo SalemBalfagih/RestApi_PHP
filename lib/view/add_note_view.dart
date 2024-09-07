@@ -22,19 +22,26 @@ class _AddNotesState extends State<AddNotes> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
 
   bool isloading = false;
-
+  File? myfile;
   addnotes() async {
+    if (myfile == null) {
+      return AwesomeDialog(
+          context: context,
+          title: "هام",
+          body: const Text("الرجاء ا=ضافة صورة"))
+        ..show();
+    }
     if (formState.currentState!.validate()) {
       isloading = true;
       setState(() {});
-      var response = await Crud().postRespones(
-        linkadd,
-        {
-          "title": title.text,
-          "content": content.text,
-          "userid": sharedPreferences.getString("id"),
-        },
-      );
+      var response = await Crud().postResponesWithFile(
+          linkadd,
+          {
+            "title": title.text,
+            "content": content.text,
+            "userid": sharedPreferences.getString("id"),
+          },
+          myfile!);
       isloading = false;
       setState(() {});
       if (response['status'] == "success") {
@@ -90,6 +97,62 @@ class _AddNotesState extends State<AddNotes> {
                         validato: (val) {
                           return validatoInput(val!, 224, 4);
                         }),
+                    MaterialButton(
+                      onPressed: () async {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) => SizedBox(
+                            height: 100,
+                            child: Column(
+                              children: [
+                                InkWell(
+                                  onTap: () async {
+                                    XFile? xFile = await ImagePicker()
+                                        .pickImage(source: ImageSource.gallery);
+                                    if (xFile != null) {
+                                      myfile = File(xFile.path);
+                                    }
+                                  },
+                                  child: Container(
+                                      alignment: Alignment.center,
+                                      padding: const EdgeInsets.all(10),
+                                      width: double.infinity,
+                                      child: const Text(
+                                        " add image from gallery",
+                                        style: TextStyle(fontSize: 20),
+                                      )),
+                                ),
+                                InkWell(
+                                  onTap: () async {
+                                    XFile? xFile = await ImagePicker()
+                                        .pickImage(source: ImageSource.camera);
+                                    if (xFile != null) {
+                                      myfile = File(xFile.path);
+                                    }
+                                  },
+                                  child: Container(
+                                      alignment: Alignment.center,
+                                      padding: const EdgeInsets.all(10),
+                                      width: double.infinity,
+                                      child: const Text(
+                                        " add image from camare",
+                                        style: TextStyle(fontSize: 20),
+                                      )),
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      color: Colors.green,
+                      textColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 15, horizontal: 100),
+                      child: const Text("addimage"),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     const SizedBox(
                       height: 20,
                     ),

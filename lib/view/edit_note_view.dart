@@ -1,10 +1,6 @@
-import 'dart:io';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:restapi_php/constants/linkapi.dart';
-import 'package:restapi_php/main.dart';
-import 'package:restapi_php/model/notes_model.dart';
 import 'package:restapi_php/services/crud.dart';
 import 'package:restapi_php/validate.dart';
 import 'package:restapi_php/view/home_view.dart';

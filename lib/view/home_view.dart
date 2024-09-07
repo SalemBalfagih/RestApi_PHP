@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:restapi_php/constants/linkapi.dart';
 import 'package:restapi_php/main.dart';
-import 'package:restapi_php/model/notes_model.dart';
-import 'package:restapi_php/services/crud.dart';
 import 'package:restapi_php/view/add_note_view.dart';
-import 'package:restapi_php/view/edit_note_view.dart';
 import 'package:restapi_php/view/login_view.dart';
-import 'package:restapi_php/widgets/custom_card.dart';
+
 import 'package:restapi_php/widgets/custom_list_view.dart';
 
 class HomeView extends StatelessWidget {
