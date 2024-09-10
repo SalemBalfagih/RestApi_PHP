@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:restapi_php/constants/linkapi.dart';
 import 'package:restapi_php/main.dart';
-import 'package:restapi_php/services/crud.dart';
+import 'package:restapi_php/services/api.dart';
 import 'package:restapi_php/validate.dart';
 import 'package:restapi_php/view/home_view.dart';
 import 'package:restapi_php/widgets/custom_text_filed.dart';
@@ -34,7 +34,7 @@ class _AddNotesState extends State<AddNotes> {
     if (formState.currentState!.validate()) {
       isloading = true;
       setState(() {});
-      var response = await Crud().postResponesWithFile(
+      var response = await Api().postResponesWithFile(
           linkadd,
           {
             "title": title.text,
@@ -111,6 +111,8 @@ class _AddNotesState extends State<AddNotes> {
                                         .pickImage(source: ImageSource.gallery);
                                     if (xFile != null) {
                                       myfile = File(xFile.path);
+                                      Navigator.pop(context);
+                                      setState(() {});
                                     }
                                   },
                                   child: Container(
@@ -128,6 +130,7 @@ class _AddNotesState extends State<AddNotes> {
                                         .pickImage(source: ImageSource.camera);
                                     if (xFile != null) {
                                       myfile = File(xFile.path);
+                                      Navigator.pop(context);
                                     }
                                   },
                                   child: Container(
@@ -144,7 +147,7 @@ class _AddNotesState extends State<AddNotes> {
                           ),
                         );
                       },
-                      color: Colors.green,
+                      color: myfile == null ? Colors.green : Colors.amber,
                       textColor: Colors.white,
                       padding: const EdgeInsets.symmetric(
                           vertical: 15, horizontal: 100),

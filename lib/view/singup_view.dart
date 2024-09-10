@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restapi_php/constants/images.dart';
 import 'package:restapi_php/constants/linkapi.dart';
-import 'package:restapi_php/services/crud.dart';
+import 'package:restapi_php/services/api.dart';
 import 'package:restapi_php/validate.dart';
 import 'package:restapi_php/view/login_view.dart';
 import 'package:restapi_php/view/success_view.dart';
@@ -28,7 +28,7 @@ class _SingupViewState extends State<SingupView> {
     if (formstate.currentState!.validate()) {
       loading = true;
       setState(() {});
-      Map<String, dynamic> response = await Crud().postRespones(linksingup, {
+      Map<String, dynamic> response = await Api().postRespones(linksingup, {
         "username": username.text,
         "email": email.text,
         "password": password.text,

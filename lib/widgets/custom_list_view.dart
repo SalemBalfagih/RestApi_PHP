@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:restapi_php/constants/linkapi.dart';
 import 'package:restapi_php/main.dart';
 import 'package:restapi_php/model/notes_model.dart';
-import 'package:restapi_php/services/crud.dart';
+import 'package:restapi_php/services/api.dart';
 import 'package:restapi_php/view/edit_note_view.dart';
 import 'package:restapi_php/view/home_view.dart';
 import 'package:restapi_php/widgets/custom_card.dart';
@@ -20,17 +20,18 @@ class _CustomListViewState extends State<CustomListView> {
   bool isloading = false;
 
   getNotes() async {
-    var response = await Crud().postRespones(linkview, {
+    var response = await Api().postRespones(linkview, {
       "id": sharedPreferences.getString("id"),
     });
     return response;
   }
 
-  deleteNote(String id) async {
+  deleteNote(String id, String imagename) async {
     isloading = true;
     setState(() {});
-    var response = await Crud().postRespones(linkdelete, {
+    var response = await Api().postRespones(linkdelete, {
       'id': id,
+      'imagename': imagename,
     });
     if (response["status"] == "success") {
       isloading = true;
@@ -58,8 +59,10 @@ class _CustomListViewState extends State<CustomListView> {
                       itemBuilder: (context, i) {
                         return CustomCard(
                             onPressed: () {
-                              deleteNote(snapshot.data['data'][i]['notes_id']
-                                  .toString());
+                              deleteNote(
+                                  snapshot.data['data'][i]['notes_id']
+                                      .toString(),
+                                  snapshot.data['data'][i]['note_image']);
                             },
                             ontap: () {
                               Navigator.of(context).push(MaterialPageRoute(

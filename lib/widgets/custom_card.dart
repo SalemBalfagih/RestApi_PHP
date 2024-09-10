@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restapi_php/constants/images.dart';
+import 'package:restapi_php/constants/linkapi.dart';
 import 'package:restapi_php/model/notes_model.dart';
 
 class CustomCard extends StatelessWidget {
@@ -23,8 +24,8 @@ class CustomCard extends StatelessWidget {
           children: [
             Expanded(
                 flex: 1,
-                child: Image.asset(
-                  noteImage,
+                child: Image.network(
+                  linkimage + model.noteImage!,
                   height: 100,
                   width: 100,
                 )),

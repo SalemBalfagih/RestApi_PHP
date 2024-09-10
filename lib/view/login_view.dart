@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:restapi_php/constants/images.dart';
 import 'package:restapi_php/constants/linkapi.dart';
 import 'package:restapi_php/main.dart';
-import 'package:restapi_php/services/crud.dart';
+import 'package:restapi_php/services/api.dart';
 import 'package:restapi_php/validate.dart';
 import 'package:restapi_php/view/home_view.dart';
 import 'package:restapi_php/view/singup_view.dart';
@@ -26,7 +26,7 @@ class _LoginViewState extends State<LoginView> {
     if (formstate.currentState!.validate()) {
       loading = true;
       setState(() {});
-      var response = await Crud().postRespones(linklogin, {
+      var response = await Api().postRespones(linklogin, {
         'email': email.text,
         'password': password.text,
       });

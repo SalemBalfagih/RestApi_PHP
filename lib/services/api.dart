@@ -1,13 +1,23 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:math';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
 
-class Crud {
-  postRespones(String url, Map data) async {
+String basicAuth = 'Basic ${base64Encode(
+  utf8.encode('admin:12345'),
+)}';
+Map<String, String> myheaders = {
+  "Authorization": basicAuth,
+};
+
+class Api {
+  postRespones(
+    String url,
+    Map data,
+  ) async {
     try {
-      var response = await http.post(Uri.parse(url), body: data);
+      var response =
+          await http.post(Uri.parse(url), body: data, headers: myheaders);
       if (response.statusCode == 200) {
         var responsebody = jsonDecode(response.body);
         return responsebody;
@@ -26,6 +36,7 @@ class Crud {
     var multiParFile = http.MultipartFile("file", stream, length,
         filename: basename(file.path));
     request.files.add(multiParFile);
+    request.headers.addAll(myheaders);
     data.forEach((key, value) {
       request.fields[key] = value;
     });
