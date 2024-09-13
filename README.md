@@ -1,16 +1,22 @@
-# restapi_php
+# Flutter & REST API (PHP) - User and Notes Management Application
 
-A new Flutter project.
+This application uses Flutter for the frontend and a REST API built with PHP for the backend to manage users and their notes. The app allows users to register, log in, add, edit, and delete notes.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- **User Registration and Login**: Allows users to create an account and log in using a username and password.
+- **Add Notes**: Users can add new notes to their account.
+- **View Notes**: Displays a list of notes associated with each user.
+- **Edit Notes**: Modify existing notes.
+- **Delete Notes**: Remove notes from the database.
+- **User Authentication**: Protect access to notes using authentication. Only logged-in users can access their own notes.
 
-A few resources to get you started if this is your first Flutter project:
+## Prerequisites
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Frontend (Flutter)
+- [Flutter SDK](https://flutter.dev/docs/get-started/install)
+- An Android/iOS device or emulator to run the application.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Backend (REST API - PHP)
+- A local server like [XAMPP](https://www.apachefriends.org/index.html) or [MAMP](https://www.mamp.info/en/).
+- MySQL database.
